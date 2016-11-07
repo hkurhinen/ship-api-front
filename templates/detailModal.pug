@@ -1,0 +1,24 @@
+.row
+  .col-sm-6
+    h4 Perustiedot
+    ul
+      li Nimi: #{ship.generalInformation.name}
+      li Rakennusnumero: #{ship.generalInformation.buildNumber}
+      li Rakennusvuosi: #{ship.generalInformation.buildYear}
+      li Varustamo: #{ship.generalInformation.shipyard}
+    h4 Runko
+    ul
+      li Pituus: #{ship.frame.length}
+      li Materiaali: #{ship.frame.material}
+      li Syväys: #{ship.frame.draft}
+    h4 Moottori
+    ul
+      li Tyyppi #{ship.engine.type}
+      li RPM #{ship.engine.RPM}
+      li Hyörynpaine #{ship.engine.steamPressure}
+  .col-sm-6
+    h4 Liitteet
+    ul
+      each attachment in ship.attachments
+        li
+          a(target='blank', href='http://localhost:3000/attachments/'+attachment.fileName) #{attachment.displayName}

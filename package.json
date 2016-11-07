@@ -1,0 +1,23 @@
+{
+  "name": "ship-api-front",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.sj",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkurhinen/ship-api-front.git"
+  },
+  "author": "Heikki Kurhinen",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/hkurhinen/ship-api-front/issues"
+  },
+  "homepage": "https://github.com/hkurhinen/ship-api-front#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "pug": "^2.0.0-beta6"
+  }
+}
