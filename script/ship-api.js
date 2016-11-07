@@ -10,7 +10,6 @@
         hit._source._id = hit._id;
         ships.push(hit._source);
       }
-      console.log(ships);
       $('.main-search-results').html(renderSearchresults({ ships: ships }));
     });
   });
