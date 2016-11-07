@@ -101,7 +101,7 @@ pug_html = pug_html + "\u003Cul\u003E";
 ;pug_debug_line = 23;pug_debug_filename = "\u002Fhome\u002Fbelvain\u002FDocuments\u002Fnodejs\u002Fship-api-front\u002Ftemplates\u002FdetailModal.pug";
 pug_html = pug_html + "\u003Cli\u003E";
 ;pug_debug_line = 24;pug_debug_filename = "\u002Fhome\u002Fbelvain\u002FDocuments\u002Fnodejs\u002Fship-api-front\u002Ftemplates\u002FdetailModal.pug";
-pug_html = pug_html + "\u003Ca" + (" target=\"blank\""+pug_attr("href", 'http://localhost:3000/attachments/'+attachment.fileName, true, false)) + "\u003E";
+pug_html = pug_html + "\u003Ca" + (" target=\"blank\""+pug_attr("href", 'https://api.laiva-api.pw/attachments/'+attachment.fileName, true, false)) + "\u003E";
 ;pug_debug_line = 24;pug_debug_filename = "\u002Fhome\u002Fbelvain\u002FDocuments\u002Fnodejs\u002Fship-api-front\u002Ftemplates\u002FdetailModal.pug";
 pug_html = pug_html + (pug_escape(null == (pug_interp = attachment.displayName) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fli\u003E";
       }
@@ -113,7 +113,7 @@ pug_html = pug_html + (pug_escape(null == (pug_interp = attachment.displayName) 
 ;pug_debug_line = 23;pug_debug_filename = "\u002Fhome\u002Fbelvain\u002FDocuments\u002Fnodejs\u002Fship-api-front\u002Ftemplates\u002FdetailModal.pug";
 pug_html = pug_html + "\u003Cli\u003E";
 ;pug_debug_line = 24;pug_debug_filename = "\u002Fhome\u002Fbelvain\u002FDocuments\u002Fnodejs\u002Fship-api-front\u002Ftemplates\u002FdetailModal.pug";
-pug_html = pug_html + "\u003Ca" + (" target=\"blank\""+pug_attr("href", 'http://localhost:3000/attachments/'+attachment.fileName, true, false)) + "\u003E";
+pug_html = pug_html + "\u003Ca" + (" target=\"blank\""+pug_attr("href", 'https://api.laiva-api.pw/attachments/'+attachment.fileName, true, false)) + "\u003E";
 ;pug_debug_line = 24;pug_debug_filename = "\u002Fhome\u002Fbelvain\u002FDocuments\u002Fnodejs\u002Fship-api-front\u002Ftemplates\u002FdetailModal.pug";
 pug_html = pug_html + (pug_escape(null == (pug_interp = attachment.displayName) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fli\u003E";
     }
