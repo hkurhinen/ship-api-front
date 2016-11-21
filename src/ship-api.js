@@ -4,9 +4,14 @@
   $.fn.shipApi = function (options) {
     var settings = $.extend({
       url: 'https://api.laiva-api.pw/v1',
+      size: 10
     }, options);
 
     $(this).html(renderShipApiSearchControls());
+
+    var offset = 0;
+    var total = 0;
+    var query = '';
 
     var element = $(this);
 
@@ -31,16 +36,38 @@
       throw new Error('Search button missing, is your theme ok?');
     }
 
-    searchButton.click(function () {
-      var query = searchInput.val();
-      $.getJSON(settings.url + '/ships?q=' + query, function (res) {
+    var search = function() {
+      $.getJSON(settings.url + '/ships?q=' + query + '&from=' + offset + '&size=' + settings.size, function (res) {
+        total = res.hits.total;
         var ships = [];
         for (var i = 0; i < res.hits.hits.length; i++) {
           var hit = res.hits.hits[i];
           hit._source._id = hit._id;
           ships.push(hit._source);
         }
-        searchResultContainer.html(renderShipApiSearchresults({ ships: ships }));
+        
+        searchResultContainer.html(renderShipApiSearchresults({
+          ships: ships,
+          offset: offset,
+          size: settings.size,
+          total: total
+        }));
+        
+        searchResultContainer.find('.prev-page').click(function () {
+          offset -= settings.size;
+          search();
+        });
+        
+        searchResultContainer.find('.next-page').click(function () {
+          offset += settings.size;
+          search();
+        });
+        
+        searchResultContainer.find('.goto-page').click(function () {
+          offset = parseInt($(this).attr('data-offset'), 10);
+          search();
+        });
+
         searchResultContainer.find('.searchresult').click(function () {
           var shipId = $(this).attr('data-ship-id');
           var shipName = $(this).attr('data-ship-name');
@@ -49,6 +76,12 @@
           });
         });
       });
+    }
+
+    searchButton.click(function () {
+      query = searchInput.val();
+      offset = 0;
+      search();
     });
 
     searchInput.keyup(function (event) {

@@ -12,3 +12,30 @@ table.table.table-hover
         td #{ship.generalInformation.shipyard}
         td #{ship.generalInformation.buildNumber}
         td #{ship.generalInformation.buildYear}
+nav.text-center
+  ul.pagination
+    if offset == 0
+      li.disabled
+        a(href='#', aria-label='Previous')
+          span(aria-hidden='true') «
+    else
+      li
+        a.prev-page(href='#', aria-label='Previous')
+          span(aria-hidden='true') «
+    - for(var i = 0, count = 1; i < total; i+=size, count++)
+      if(i == offset)
+        li.active
+          a(href='#')
+            | #{count}
+            span.sr-only (current)
+      else
+        li
+          a.goto-page(data-offset=i, href='#') #{count}
+    if(offset + size > total)
+      li.disabled
+        a(href='#', aria-label='Next')
+          span(aria-hidden='true') »
+    else
+      li
+        a.next-page(href='#', aria-label='Next')
+          span(aria-hidden='true') »
