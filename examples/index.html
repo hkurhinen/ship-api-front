@@ -43,7 +43,14 @@
   <script src="../themes/ship-api-bootstrap/dist/ship-api-bootstrap-theme.min.js"></script>
   <script src="../dist/ship-api.min.js"></script>
   <script type="text/javascript">
-    $('#ship-search').shipApi();
+    $('#ship-search').shipApi({
+      onShipSelect: function(ship, html) {               
+        var dialog = bootbox.dialog({
+          title: ship.name,
+          message: html
+        });
+      }
+    });
   </script>
 </body>
 
