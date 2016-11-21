@@ -8,6 +8,14 @@
 
     $(this).html(renderShipApiSearchControls());
 
+    var element = $(this);
+
+    element.on('ship-select', function (event, ship, html) {
+      if (typeof (settings.onShipSelect) == 'function') {
+        settings.onShipSelect(ship, html);
+      }
+    });
+
     var searchInput = $(this).find('.main-search-input');
     if (searchInput.length < 1) {
       throw new Error('Search input field missing, is your theme ok?');
@@ -36,18 +44,12 @@
         searchResultContainer.find('.searchresult').click(function () {
           var shipId = $(this).attr('data-ship-id');
           var shipName = $(this).attr('data-ship-name');
-          var dialog = bootbox.dialog({
-            title: shipName,
-            message: '<p><i class="fa fa-spin fa-spinner"></i> Ladataan...</p>'
-          });
-          dialog.init(function () {
-            $.getJSON(settings.url+'/ships/' + shipId, function (ship) {
-              dialog.find('.bootbox-body').html(renderShipApiDetailModal({ ship: ship }));
-            });
+          $.getJSON(settings.url + '/ships/' + shipId, function (ship) {
+            element.trigger('ship-select', [ship, renderShipApiDetailModal({ ship: ship })]);
           });
         });
       });
-    })
+    });
 
   };
 
