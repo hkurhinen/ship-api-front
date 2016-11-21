@@ -14,7 +14,7 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="style/ship-api.css">
+  <link rel="stylesheet" href="../themes/ship-api-bootstrap/dist/ship-api-bootstrap-theme.min.css">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -31,29 +31,7 @@
   </div>
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="row">
-          <div class="col-sm-11 search-input-container">
-            <input id="main-search-input" class="form-control input-lg" type="text" />
-          </div>
-          <div class="col-sm-1">
-            <button id="main-search-btn" class="btn btn-primary btn-lg">Hae</button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="main-search-results"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <div class="well">
-          <p>Aikaisemmat haut</p>
-        </div>
-      </div>
-    </div>
+    <div id="ship-search"></div>
   </div>
   <!-- /container -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -62,8 +40,11 @@
     crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/095a8f8320.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-  <script src="script/templates.js"></script>
-  <script src="script/ship-api.js"></script>
+  <script src="../themes/ship-api-bootstrap/dist/ship-api-bootstrap-theme.min.js"></script>
+  <script src="../dist/ship-api.min.js"></script>
+  <script type="text/javascript">
+    $('#ship-search').shipApi();
+  </script>
 </body>
 
 </html>
