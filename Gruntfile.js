@@ -14,7 +14,7 @@ module.exports = function (grunt) {
       templateName = 'renderShipApi' + templateName[0].toUpperCase() + templateName.substring(1);
       compiledClientTemplates.push(pug.compileFileClient(
         this.data.sourceFolder + clientTemplates[i],
-        { name: templateName }
+        { name: templateName, compileDebug: false }
       ));
     }
     fs.writeFileSync(this.data.destFile, compiledClientTemplates.join(''));
