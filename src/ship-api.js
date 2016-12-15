@@ -31,12 +31,19 @@
       throw new Error('Search results container missing, is your theme ok?');
     }
 
+    var loadContainer = $(this).find('.ship-api-load-container');
+    if (loadContainer.length < 1) {
+      throw new Error('Load container missing, is your theme ok?');
+    }
+
     var searchButton = $(this).find('.main-search-btn');
     if (searchButton.length < 1) {
       throw new Error('Search button missing, is your theme ok?');
     }
 
     var search = function() {
+      searchResultContainer.hide();
+      loadContainer.show();
       $.getJSON(settings.url + '/ships?q=' + query + '&from=' + offset + '&size=' + settings.size, function (res) {
         total = res.hits.total;
         var ships = [];
@@ -52,6 +59,9 @@
           size: settings.size,
           total: total
         }));
+
+        loadContainer.hide();
+        searchResultContainer.show();
         
         searchResultContainer.find('.prev-page').click(function () {
           offset -= settings.size;
