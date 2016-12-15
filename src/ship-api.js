@@ -21,6 +21,18 @@
       }
     });
 
+    element.on('before-search', function (event, data) {
+      if (typeof (settings.beforeSearch) == 'function') {
+        settings.beforeSearch(data);
+      }
+    });
+
+    element.on('after-search', function (event, data) {
+      if (typeof (settings.afterSearch) == 'function') {
+        settings.afterSearch(data);
+      }
+    });
+
     var searchInput = $(this).find('.main-search-input');
     if (searchInput.length < 1) {
       throw new Error('Search input field missing, is your theme ok?');
@@ -42,6 +54,7 @@
     }
 
     var search = function() {
+      element.trigger('before-search', {query: query, offset: offset, size: settings.size});
       searchResultContainer.hide();
       loadContainer.show();
       $.getJSON(settings.url + '/ships?q=' + query + '&from=' + offset + '&size=' + settings.size, function (res) {
@@ -86,7 +99,14 @@
           });
         });
       });
+
+      element.trigger('after-search', {query: query, offset: offset, size: settings.size});
     }
+
+    element.on('find-ships', function(event, query) {
+      searchInput.val(query);
+      searchButton.click();
+    });
 
     searchButton.click(function () {
       query = searchInput.val();
