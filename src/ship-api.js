@@ -15,6 +15,10 @@
 
     var element = $(this);
 
+    if(settings.prevSearches) {
+      $(this).find('.ship-api-previous-searches').append(settings.prevSearches);
+    }
+
     element.on('ship-select', function (event, ship, html) {
       if (typeof (settings.onShipSelect) == 'function') {
         settings.onShipSelect(ship, html);
@@ -76,17 +80,20 @@
         loadContainer.hide();
         searchResultContainer.show();
         
-        searchResultContainer.find('.prev-page').click(function () {
+        searchResultContainer.find('.prev-page').click(function (e) {
+          e.preventDefault();
           offset -= settings.size;
           search();
         });
         
-        searchResultContainer.find('.next-page').click(function () {
+        searchResultContainer.find('.next-page').click(function (e) {
+          e.preventDefault();
           offset += settings.size;
           search();
         });
         
-        searchResultContainer.find('.goto-page').click(function () {
+        searchResultContainer.find('.goto-page').click(function (e) {
+          e.preventDefault();
           offset = parseInt($(this).attr('data-offset'), 10);
           search();
         });
@@ -106,6 +113,11 @@
     element.on('find-ships', function(event, query) {
       searchInput.val(query);
       searchButton.click();
+    });
+
+    element.on('set-prev-searches', function(event, data) {
+      element.find('.ship-api-previous-searches').empty();
+      element.find('.ship-api-previous-searches').append(data);
     });
 
     searchButton.click(function () {
