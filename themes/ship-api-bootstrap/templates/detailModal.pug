@@ -1,24 +1,19 @@
 .row
-  .col-sm-6
+  .col-xs-12
     h4 Perustiedot
     ul
-      li Nimi: #{ship.generalInformation.name}
-      li Rakennusnumero: #{ship.generalInformation.buildNumber}
-      li Rakennusvuosi: #{ship.generalInformation.buildYear}
-      li Varustamo: #{ship.generalInformation.shipyard}
-    h4 Runko
+      li Nimi: #{ship.name}
+      li Rakennusnumero: #{ship.buildnumber}
+      li Rakennusvuosi: #{ship.buildyear}
+      li Tyyppi: #{ship.type_translated} (#{ship.type})
+      li Tyypin lisätiedot: #{ship.type_info}
+    h4 Tarkemmat tiedot
     ul
-      li Pituus: #{ship.frame.length}
-      li Materiaali: #{ship.frame.material}
-      li Syväys: #{ship.frame.draft}
-    h4 Moottori
-    ul
-      li Tyyppi #{ship.engine.type}
-      li RPM #{ship.engine.RPM}
-      li Hyörynpaine #{ship.engine.steamPressure}
-  .col-sm-6
-    h4 Liitteet
-    ul
-      each attachment in ship.attachments
-        li
-          a(target='blank', href='https://api.laiva-api.pw/attachments/'+attachment.fileName) #{attachment.displayName}
+      each property in ship.properties
+        li #{property.property}: #{property.value}
+    if ship.attachments
+      h4 Liitteet
+      ul
+        each attachment in ship.attachments
+          li
+            a(href=apiurl+'/attachments/'+attachment._id+'/data', target='blank') #{attachment.filename}

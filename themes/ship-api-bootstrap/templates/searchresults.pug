@@ -1,17 +1,17 @@
 table.table.table-hover
   thead
     tr
+      th Rakennusnumero
       th Nimi
-      th Varustamo
-      th Rakennus nro.
+      th Tyyppi
       th Rakennus vuosi
   tbody
     each ship in ships
-      tr.searchresult(data-ship-name=ship.generalInformation.name, data-ship-id=ship._id)
-        td #{ship.generalInformation.name}
-        td #{ship.generalInformation.shipyard}
-        td #{ship.generalInformation.buildNumber}
-        td #{ship.generalInformation.buildYear}
+      tr.searchresult(data-ship-name=ship.name, data-ship-id=ship._id, data-ship-buildnumber=ship.buildnumber)
+        td #{ship.buildnumber}
+        td #{ship.name}
+        td #{ship.type_translated}
+        td #{ship.buildyear}
 nav.text-center
   ul.pagination
     if offset == 0
